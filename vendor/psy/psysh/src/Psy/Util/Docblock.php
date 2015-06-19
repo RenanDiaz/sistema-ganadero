@@ -28,7 +28,7 @@ class Docblock
      * (such as `@param type var desc` and `@return type desc`) and the names of
      * those parameters.
      *
-     * @var array
+     * @type Array
      */
     public static $vectors = array(
         'throws' => array('type', 'desc'),
@@ -39,9 +39,9 @@ class Docblock
     protected $reflector;
 
     /**
-     * The description of the symbol.
+     * The description of the symbol
      *
-     * @var string
+     * @type String
      */
     public $desc;
 
@@ -55,14 +55,14 @@ class Docblock
      * value within the tag-value array is an array in itself with keys as
      * described by {@see DocBlock::$vectors}.
      *
-     * @var array
+     * @type Array
      */
     public $tags;
 
     /**
      * The entire DocBlock comment that was parsed.
      *
-     * @var string
+     * @type String
      */
     public $comment;
 
@@ -80,7 +80,7 @@ class Docblock
     /**
      * Set and parse the docblock comment.
      *
-     * @param string $comment The docblock
+     * @param String $comment The docblock
      */
     protected function setComment($comment)
     {
@@ -125,7 +125,7 @@ class Docblock
     /**
      * Parse the comment into the component parts and set the state of the object.
      *
-     * @param string $comment The docblock
+     * @param String $comment The docblock
      */
     protected function parseComment($comment)
     {
@@ -192,7 +192,7 @@ class Docblock
     /**
      * Whether or not a docblock contains a given @tag.
      *
-     * @param string $tag The name of the @tag to check for
+     * @param String $tag The name of the @tag to check for
      *
      * @return bool
      */
@@ -202,11 +202,11 @@ class Docblock
     }
 
     /**
-     * The value of a tag.
+     * The value of a tag
      *
-     * @param string $tag
+     * @param String $tag
      *
-     * @return array
+     * @return Array
      */
     public function tag($tag)
     {
@@ -214,9 +214,9 @@ class Docblock
     }
 
     /**
-     * Whether or not a string begins with a @tag.
+     * Whether or not a string begins with a @tag
      *
-     * @param string $str
+     * @param String $str
      *
      * @return bool
      */
@@ -226,11 +226,11 @@ class Docblock
     }
 
     /**
-     * The tag at the beginning of a string.
+     * The tag at the beginning of a string
      *
-     * @param string $str
+     * @param String $str
      *
-     * @return string|null
+     * @return String|null
      */
     public static function strTag($str)
     {

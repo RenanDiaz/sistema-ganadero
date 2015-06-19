@@ -1,155 +1,172 @@
-<?php
+<?php namespace Illuminate\Database\Eloquent;
 
-namespace Illuminate\Database\Eloquent;
+class SoftDeletingScope implements ScopeInterface {
 
-class SoftDeletingScope implements ScopeInterface
-{
-    /**
-     * All of the extensions to be added to the builder.
-     *
-     * @var array
-     */
-    protected $extensions = ['ForceDelete', 'Restore', 'WithTrashed', 'OnlyTrashed'];
+	/**
+	 * All of the extensions to be added to the builder.
+	 *
+	 * @var array
+	 */
+	protected $extensions = ['ForceDelete', 'Restore', 'WithTrashed', 'OnlyTrashed'];
 
-    /**
-     * Apply the scope to a given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
-    public function apply(Builder $builder, Model $model)
-    {
-        $builder->whereNull($model->getQualifiedDeletedAtColumn());
+	/**
+	 * Apply the scope to a given Eloquent query builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @param  \Illuminate\Database\Eloquent\Model  $model
+	 * @return void
+	 */
+	public function apply(Builder $builder, Model $model)
+	{
+		$builder->whereNull($model->getQualifiedDeletedAtColumn());
 
-        $this->extend($builder);
-    }
+		$this->extend($builder);
+	}
 
-    /**
-     * Remove the scope from the given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
-    public function remove(Builder $builder, Model $model)
-    {
-        $column = $model->getQualifiedDeletedAtColumn();
+	/**
+	 * Remove the scope from the given Eloquent query builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @param  \Illuminate\Database\Eloquent\Model  $model
+	 * @return void
+	 */
+	public function remove(Builder $builder, Model $model)
+	{
+		$column = $model->getQualifiedDeletedAtColumn();
 
-        $query = $builder->getQuery();
+		$query = $builder->getQuery();
 
-        $query->wheres = collect($query->wheres)->reject(function ($where) use ($column) {
-            return $this->isSoftDeleteConstraint($where, $column);
-        })->values()->all();
-    }
+		foreach ((array) $query->wheres as $key => $where)
+		{
+			// If the where clause is a soft delete date constraint, we will remove it from
+			// the query and reset the keys on the wheres. This allows this developer to
+			// include deleted model in a relationship result set that is lazy loaded.
+			if ($this->isSoftDeleteConstraint($where, $column))
+			{
+				unset($query->wheres[$key]);
 
-    /**
-     * Extend the query builder with the needed functions.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    public function extend(Builder $builder)
-    {
-        foreach ($this->extensions as $extension) {
-            $this->{"add{$extension}"}($builder);
-        }
+				$query->wheres = array_values($query->wheres);
+			}
+		}
+	}
 
-        $builder->onDelete(function (Builder $builder) {
-            $column = $this->getDeletedAtColumn($builder);
+	/**
+	 * Extend the query builder with the needed functions.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return void
+	 */
+	public function extend(Builder $builder)
+	{
+		foreach ($this->extensions as $extension)
+		{
+			$this->{"add{$extension}"}($builder);
+		}
 
-            return $builder->update([
-                $column => $builder->getModel()->freshTimestampString(),
-            ]);
-        });
-    }
+		$builder->onDelete(function(Builder $builder)
+		{
+			$column = $this->getDeletedAtColumn($builder);
 
-    /**
-     * Get the "deleted at" column for the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return string
-     */
-    protected function getDeletedAtColumn(Builder $builder)
-    {
-        if (count($builder->getQuery()->joins) > 0) {
-            return $builder->getModel()->getQualifiedDeletedAtColumn();
-        } else {
-            return $builder->getModel()->getDeletedAtColumn();
-        }
-    }
+			return $builder->update(array(
+				$column => $builder->getModel()->freshTimestampString()
+			));
+		});
+	}
 
-    /**
-     * Add the force delete extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addForceDelete(Builder $builder)
-    {
-        $builder->macro('forceDelete', function (Builder $builder) {
-            return $builder->getQuery()->delete();
-        });
-    }
+	/**
+	 * Get the "deleted at" column for the builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return string
+	 */
+	protected function getDeletedAtColumn(Builder $builder)
+	{
+		if (count($builder->getQuery()->joins) > 0)
+		{
+			return $builder->getModel()->getQualifiedDeletedAtColumn();
+		}
+		else
+		{
+			return $builder->getModel()->getDeletedAtColumn();
+		}
+	}
 
-    /**
-     * Add the restore extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addRestore(Builder $builder)
-    {
-        $builder->macro('restore', function (Builder $builder) {
-            $builder->withTrashed();
+	/**
+	 * Add the force delete extension to the builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return void
+	 */
+	protected function addForceDelete(Builder $builder)
+	{
+		$builder->macro('forceDelete', function(Builder $builder)
+		{
+			return $builder->getQuery()->delete();
+		});
+	}
 
-            return $builder->update([$builder->getModel()->getDeletedAtColumn() => null]);
-        });
-    }
+	/**
+	 * Add the restore extension to the builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return void
+	 */
+	protected function addRestore(Builder $builder)
+	{
+		$builder->macro('restore', function(Builder $builder)
+		{
+			$builder->withTrashed();
 
-    /**
-     * Add the with-trashed extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addWithTrashed(Builder $builder)
-    {
-        $builder->macro('withTrashed', function (Builder $builder) {
-            $this->remove($builder, $builder->getModel());
+			return $builder->update(array($builder->getModel()->getDeletedAtColumn() => null));
+		});
+	}
 
-            return $builder;
-        });
-    }
+	/**
+	 * Add the with-trashed extension to the builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return void
+	 */
+	protected function addWithTrashed(Builder $builder)
+	{
+		$builder->macro('withTrashed', function(Builder $builder)
+		{
+			$this->remove($builder, $builder->getModel());
 
-    /**
-     * Add the only-trashed extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addOnlyTrashed(Builder $builder)
-    {
-        $builder->macro('onlyTrashed', function (Builder $builder) {
-            $model = $builder->getModel();
+			return $builder;
+		});
+	}
 
-            $this->remove($builder, $model);
+	/**
+	 * Add the only-trashed extension to the builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return void
+	 */
+	protected function addOnlyTrashed(Builder $builder)
+	{
+		$builder->macro('onlyTrashed', function(Builder $builder)
+		{
+			$model = $builder->getModel();
 
-            $builder->getQuery()->whereNotNull($model->getQualifiedDeletedAtColumn());
+			$this->remove($builder, $model);
 
-            return $builder;
-        });
-    }
+			$builder->getQuery()->whereNotNull($model->getQualifiedDeletedAtColumn());
 
-    /**
-     * Determine if the given where clause is a soft delete constraint.
-     *
-     * @param  array   $where
-     * @param  string  $column
-     * @return bool
-     */
-    protected function isSoftDeleteConstraint(array $where, $column)
-    {
-        return $where['type'] == 'Null' && $where['column'] == $column;
-    }
+			return $builder;
+		});
+	}
+
+	/**
+	 * Determine if the given where clause is a soft delete constraint.
+	 *
+	 * @param  array   $where
+	 * @param  string  $column
+	 * @return bool
+	 */
+	protected function isSoftDeleteConstraint(array $where, $column)
+	{
+		return $where['type'] == 'Null' && $where['column'] == $column;
+	}
+
 }
