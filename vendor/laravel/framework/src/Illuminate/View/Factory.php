@@ -644,7 +644,11 @@ class Factory implements FactoryContract {
 			$sectionContent = $this->sections[$section];
 		}
 
-		return str_replace('@parent', '', $sectionContent);
+		$sectionContent = str_replace('@@parent', '--parent--holder--', $sectionContent);
+
+		return str_replace(
+			'--parent--holder--', '@parent', str_replace('@parent', '', $sectionContent)
+		);
 	}
 
 	/**
@@ -859,6 +863,17 @@ class Factory implements FactoryContract {
 	public function getShared()
 	{
 		return $this->shared;
+	}
+
+	/**
+	 * Check if section exists.
+	 *
+	 * @param  string  $name
+	 * @return bool
+	 */
+	public function hasSection($name)
+	{
+		return array_key_exists($name, $this->sections);
 	}
 
 	/**
