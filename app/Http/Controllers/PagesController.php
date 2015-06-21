@@ -12,11 +12,11 @@ class PagesController extends Controller {
 
     public  function stock(){
 
-        return view('pages.stock');//Inventario de Ganado
+        return view('pages.stock');//Inventario de ganado
     }
 
-    public function input(){
+    public function supplies(){
 
-        return view('pages.input'); //Inventario de insumo
+        return view('pages.supplies'); //Inventario de insumos
     }
 }
