@@ -1,5 +1,11 @@
 @extends('master')
 @section('content')
+    <div class="row">
 
-    <h2> Pagina Inventario de Insumos</h2>
+        <div class="col-md-12">
+            <h1><strong>Inventario de Insumos</strong></h1>
+            <hr class="colorgraph-01"><br><br>
+        </div>
+
+    </div>
 @stop
