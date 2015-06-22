@@ -27,4 +27,21 @@ DB::table('inventario_ganado')->insert(
 
         ]
 );
-    return Redirect::to('create');;
+?>
+@extends('master')
+@section('content')
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1><strong>Operación exitosa</strong></h1>
+            <hr class="colorgraph-01"><br>
+            <a href="create"><button type="submit" class="btn btn-lg btn-success btn-block" >
+                    <strong>Agregar </strong><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button></a><br>
+            <a href="stock"><button type="submit" class="btn btn-lg btn-info btn-block" >
+                    <strong>Ver Inventario </strong><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                </button></a>
+         </div>
+        <div class="col-md-4"></div>
+    </div>
+@endsection
