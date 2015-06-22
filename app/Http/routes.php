@@ -7,7 +7,7 @@ Route::get('stock','PagesController@stock');//cattle stock
 
 Route::get('create','PagesController@create');// create new cattle stock
 
-Route::get('insert','PagesController@insert');//insert cattle query
+Route::post('insert','PagesController@insert');//insert cattle query
 
 Route::get('modify','PagesController@modify');// modify cattle stock
 

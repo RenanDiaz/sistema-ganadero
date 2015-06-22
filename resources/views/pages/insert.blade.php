@@ -14,9 +14,9 @@
 DB::table('inventario_ganado')->insert(
 
         [
-                'tipos_ganados_idtipos_ganados ' => $tipo_ganado,
-                'tipos_razas_idtipos_razas = ' => $tipo_raza,
-                'cod_ganado ' => $cod_ganado,
+                'tipos_ganados_idtipos_ganados' => $tipo_ganado,
+                'tipos_razas_idtipos_razas' => $tipo_raza,
+                'cod_ganado' => $cod_ganado,
                 'color' => $color,
                 'sexo' => $sexo,
                 'cod_padre' => $cod_padre,
@@ -28,4 +28,3 @@ DB::table('inventario_ganado')->insert(
         ]
 );
     return Redirect::to('create');;
-
