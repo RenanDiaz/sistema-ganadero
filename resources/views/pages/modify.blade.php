@@ -20,7 +20,7 @@
       <?php $tipoSeleccionado = $stocks->tipos_ganados_idtipos_ganados; ?>
       <select class="form-control" name="tipo_ganado">
         @foreach($tiposDeGanado as $tipoDeGanado)
-        <option value="{{$tipoDeGanado->idtipos_ganados}}"<?php if($tipoSeleccionado == $tipoDeGanado->idtipos_ganados) echo(" selected")?>>{{$tipoDeGanado->tipo}}</option>
+        <option value="{{$tipoDeGanado->idtipos_ganados}}"<?php if($tipoSeleccionado == $tipoDeGanado->idtipos_ganados) echo " selected"?>>{{$tipoDeGanado->tipo}}</option>
         @endforeach
       </select>
     </div>
@@ -29,7 +29,7 @@
       <?php $razaSeleccionada = $stocks->tipos_razas_idtipos_razas; ?>
       <select class="form-control" name="tipo_raza">
         @foreach($razas as $raza)
-        <option value="{{$raza->idtipos_razas}}"<?php if($razaSeleccionada == $raza->idtipos_razas) echo(" selected")?>>{{$raza->raza}}</option>
+        <option value="{{$raza->idtipos_razas}}"<?php if($razaSeleccionada == $raza->idtipos_razas) echo " selected"?>>{{$raza->raza}}</option>
         @endforeach
       </select>
     </div>
@@ -45,8 +45,8 @@
       <?php $selected = $stocks->sexo;?>
       <b>Sexo</b>
       <select class="form-control" name="sexo">
-        <option <?php if($selected == 'M') echo("selected")?>>M</option>
-        <option <?php if($selected == 'H') echo("selected")?>>H</option>
+        <option<?php if($selected == 'M') echo " selected"?>>M</option>
+        <option<?php if($selected == 'H') echo " selected"?>>H</option>
       </select>
     </div>
     <div class="form-group">

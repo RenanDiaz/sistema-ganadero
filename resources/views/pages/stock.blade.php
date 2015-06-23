@@ -40,12 +40,20 @@
         <th>Modificar</th>
         <th>Eliminar</th>
       </tr>
-      <?php $stock = DB::table('inventario_ganado')->get(); ?>
+      <?php
+      $stock = DB::table('inventario_ganado')->get();
+      $tiposDeGanado = DB::table('tipos_ganados')->get();
+      $razas = DB::table('tipos_razas')->get();
+      ?>
       @foreach($stock as $stocks)
       <tr>
         <td>{{$stocks->idinventario_ganado}}</td>
-        <td>{{$stocks->tipos_ganados_idtipos_ganados}}</td>
-        <td>{{$stocks->tipos_razas_idtipos_razas}}</td>
+        @foreach($tiposDeGanado as $tipo)
+        <?php if($stocks->tipos_ganados_idtipos_ganados == $tipo->idtipos_ganados) echo '<td>', $tipo->tipo, '</td>'?>
+        @endforeach
+        @foreach($razas as $raza)
+        <?php if($stocks->tipos_razas_idtipos_razas == $raza->idtipos_razas) echo '<td>', $raza->raza, '</td>'?>
+        @endforeach
         <td>{{$stocks->cod_ganado}}</td>
         <td>{{$stocks->color}}</td>
         <td>{{$stocks->sexo}}</td>
