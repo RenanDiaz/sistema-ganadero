@@ -38,8 +38,8 @@
       <div class="form-group">
         <b>Sexo</b>
         <select class="form-control" name="sexo">
-          <option>M</option>
-          <option>H</option>
+          <option value="M">Macho</option>
+          <option value="H">Hembra</option>
         </select>
       </div>
       <div class="form-group">
@@ -62,7 +62,7 @@
         <b>Estado</b>
         <input type="text" class="form-control" placeholder="Estado" name="status">
       </div>
-      <button type="submit" class="btn btn-lg btn-success btn-block" >
+      <button type="submit" class="btn btn-lg btn-success btn-block">
         Guardar &nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
       </button>
     </form>

@@ -20,11 +20,11 @@
         </form>
       </div>
       <div class="col-md-4">
-        <a href="create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <a href="/create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button></a>
       </div>
     </div>
-    <table class="table table-bordered" id="tabla">
+    <table class="table table-bordered table-responsive" id="tabla">
       <tr class="info">
         <th>ID</th>
         <th>Tipo de ganado</th>
@@ -41,7 +41,7 @@
         <th>Eliminar</th>
       </tr>
       <?php
-      $stock = DB::table('inventario_ganado')->get();
+      $stock = DB::table('inventario_ganado')->paginate(6);
       $tiposDeGanado = DB::table('tipos_ganados')->get();
       $razas = DB::table('tipos_razas')->get();
       ?>
@@ -62,10 +62,11 @@
         <td>{{$stocks->fecha_nacimiento}}</td>
         <td>{{$stocks->descripcion}}</td>
         <td>{{$stocks->status_idstatus}}</td>
-        <td><a class="btn btn-success" href="modify?id={{$stocks->idinventario_ganado}}">Modificar</a></td>
-        <td><a class="btn btn-danger" href="delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
+        <td><a class="btn btn-success" href="/modify?id={{$stocks->idinventario_ganado}}">Modificar</a></td>
+        <td><a class="btn btn-danger" href="/delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
         @endforeach
       </table>
+      <?php echo $stock->render(); ?>
     </div>
   </div>
 
