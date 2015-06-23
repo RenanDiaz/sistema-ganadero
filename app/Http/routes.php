@@ -11,7 +11,7 @@ Route::post('insert','PagesController@insert');//insert cattle query
 
 Route::get('modify','PagesController@modify');// modify cattle stock
 
-Route::get('update','PagesController@update'); //update cattle query
+Route::post('update','PagesController@update'); //update cattle query
 
 Route::get('delete','PagesController@delete');// delete cattle stock
 

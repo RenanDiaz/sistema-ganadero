@@ -11,6 +11,8 @@
   ?>
   <form action="update" method="post">
     @foreach($stock as $stocks)
+          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
+          <input type="hidden" name="id" value="{{$id}}" />
     <div class="form-group">
       <b>Tipo de ganado</b>
       <input type="text" class="form-control"
@@ -40,6 +42,7 @@
       <b>Código del padre</b>
       <input type="text" class="form-control"
       value="{{ $stocks->cod_padre}}" name="cod_padre">
+
     </div>
     <div class="form-group">
       <b>Código de la madre</b>
