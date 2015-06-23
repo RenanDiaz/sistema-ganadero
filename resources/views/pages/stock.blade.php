@@ -20,7 +20,7 @@
         </form>
       </div>
       <div class="col-md-4">
-        <a href="create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <a href="/create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button></a>
       </div>
     </div>
@@ -62,8 +62,8 @@
         <td>{{$stocks->fecha_nacimiento}}</td>
         <td>{{$stocks->descripcion}}</td>
         <td>{{$stocks->status_idstatus}}</td>
-        <td><a class="btn btn-success" href="modify?id={{$stocks->idinventario_ganado}}">Modificar</a></td>
-        <td><a class="btn btn-danger" href="delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
+        <td><a class="btn btn-success" href="/modify?id={{$stocks->idinventario_ganado}}">Modificar</a></td>
+        <td><a class="btn btn-danger" href="/delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
         @endforeach
       </table>
       <?php echo $stock->render(); ?>
