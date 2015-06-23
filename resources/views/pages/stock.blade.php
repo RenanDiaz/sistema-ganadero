@@ -24,7 +24,7 @@
         </button></a>
       </div>
     </div>
-    <table class="table table-bordered" id="tabla">
+    <table class="table table-bordered table-responsive" id="tabla">
       <tr class="info">
         <th>ID</th>
         <th>Tipo de ganado</th>
@@ -41,7 +41,7 @@
         <th>Eliminar</th>
       </tr>
       <?php
-      $stock = DB::table('inventario_ganado')->get();
+      $stock = DB::table('inventario_ganado')->paginate(6);
       $tiposDeGanado = DB::table('tipos_ganados')->get();
       $razas = DB::table('tipos_razas')->get();
       ?>
@@ -66,6 +66,7 @@
         <td><a class="btn btn-danger" href="delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
         @endforeach
       </table>
+      <?php echo $stock->render(); ?>
     </div>
   </div>
 
