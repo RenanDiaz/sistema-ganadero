@@ -6,8 +6,7 @@
   <hr class="colorgraph-01"><br>
   <?php
   $id = Input::get('id');
-  $stock = DB::table('inventario_ganado')
-  ->where('idinventario_ganado','=',$id)->get();
+  $stock = DB::table('inventario_ganado')->where('idinventario_ganado','=',$id)->get();
   $tiposDeGanado = DB::table('tipos_ganados')->get();
   $razas = DB::table('tipos_razas')->get();
   ?>
@@ -29,48 +28,45 @@
       <?php $razaSeleccionada = $stocks->tipos_razas_idtipos_razas; ?>
       <select class="form-control" name="tipo_raza">
         @foreach($razas as $raza)
-        <option value="{{$raza->idtipos_razas}}"<?php if($razaSeleccionada == $raza->idtipos_razas) echo " selected"?>>{{$raza->raza}}</option>
+        <option value="{{$raza->idtipos_razas}}"<?php if($razaSeleccionada == $raza->idtipos_razas) echo " selected"; ?>>{{$raza->raza}}</option>
         @endforeach
       </select>
     </div>
     <div class="form-group">
       <b>Código ganado</b>
-      <input type="text" class="form-control" value="{{ $stocks->cod_ganado}}" name="cod_ganado">
+      <input type="text" class="form-control" value="{{$stocks->cod_ganado}}" name="cod_ganado">
     </div>
     <div class="form-group">
       <b>Color</b>
-      <input type="text" class="form-control" value="{{ $stocks->color}}" name="color">
+      <input type="text" class="form-control" value="{{$stocks->color}}" name="color">
     </div>
     <div class="form-group">
-      <?php $selected = $stocks->sexo;?>
+      <?php $selected = $stocks->sexo; ?>
       <b>Sexo</b>
       <select class="form-control" name="sexo">
-        <option value="M"<?php if($selected == 'M') echo " selected"?>>Macho</option>
-        <option value="H"<?php if($selected == 'H') echo " selected"?>>Hembra</option>
+        <option value="M"<?php if($selected == 'M') echo " selected"; ?>>Macho</option>
+        <option value="H"<?php if($selected == 'H') echo " selected"; ?>>Hembra</option>
       </select>
     </div>
     <div class="form-group">
       <b>Código del padre</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->cod_padre}}" name="cod_padre">
-
+      <input type="text" class="form-control" value="{{$stocks->cod_padre}}" name="cod_padre">
     </div>
     <div class="form-group">
       <b>Código de la madre</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->cod_madre}}" name="cod_madre">
+      <input type="text" class="form-control" value="{{$stocks->cod_madre}}" name="cod_madre">
     </div>
     <div class="form-group">
       <b>Fecha de nacimiento</b>
-      <input type="date" class="form-control" value="{{ $stocks->fecha_nacimiento}}" name="fecha">
+      <input type="date" class="form-control" value="{{$stocks->fecha_nacimiento}}" name="fecha">
     </div>
     <div class="form-group">
       <b>Descripción</b>
-      <input type="text" class="form-control" value="{{ $stocks->descripcion}}" name="descripcion">
+      <input type="text" class="form-control" value="{{$stocks->descripcion}}" name="descripcion">
     </div>
     <div class="form-group">
       <b>Estado</b>
-      <input type="text" class="form-control" value="{{ $stocks->status_idstatus}}" name="status">
+      <input type="text" class="form-control" value="{{$stocks->status_idstatus}}" name="status">
     </div>
     <button type="submit" class="btn btn-lg btn-success btn-block">Guardar &nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
     </button>
