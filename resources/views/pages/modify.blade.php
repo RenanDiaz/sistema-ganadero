@@ -10,31 +10,30 @@
   ->where('idinventario_ganado','=',$id)->get();
   ?>
   <form action="update" method="post">
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
     @foreach($stock as $stocks)
     <div class="form-group">
       <b>Tipo de ganado</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->tipos_ganados_idtipos_ganados}}" name="tipo_ganado">
+      <input type="text" class="form-control" value="{{ $stocks->tipos_ganados_idtipos_ganados}}" name="tipo_ganado">
     </div>
     <div class="form-group">
       <b>Raza</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->tipos_razas_idtipos_razas}}" name="tipo_raza">
+      <input type="text" class="form-control" value="{{ $stocks->tipos_razas_idtipos_razas}}" name="tipo_raza">
     </div>
     <div class="form-group">
       <b>Código ganado</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->cod_ganado}}" name="cod_ganado">
+      <input type="text" class="form-control" value="{{ $stocks->cod_ganado}}" name="cod_ganado">
     </div>
     <div class="form-group">
       <b>Color</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->color}}" name="color">
+      <input type="text" class="form-control" value="{{ $stocks->color}}" name="color">
     </div>
     <div class="form-group">
       <b>Sexo</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->sexo}}" name="sexo">
+      <select class="form-control" value="{{ $stocks->sexo}}" name="sexo">
+        <option>M</option>
+        <option>H</option>
+      </select>
     </div>
     <div class="form-group">
       <b>Código del padre</b>
@@ -48,21 +47,17 @@
     </div>
     <div class="form-group">
       <b>Fecha de nacimiento</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->fecha_nacimiento}}" name="fecha">
+      <input type="text" class="form-control" value="{{ $stocks->fecha_nacimiento}}" name="fecha">
     </div>
     <div class="form-group">
       <b>Descripción</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->descripcion}}" name="descripcion">
+      <input type="text" class="form-control" value="{{ $stocks->descripcion}}" name="descripcion">
     </div>
     <div class="form-group">
       <b>Estado</b>
-      <input type="text" class="form-control"
-      value="{{ $stocks->status_idstatus}}" name="status">
+      <input type="text" class="form-control" value="{{ $stocks->status_idstatus}}" name="status">
     </div>
-    <button type="submit" class="btn btn-lg btn-success btn-block" >
-      Guardar &nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+    <button type="submit" class="btn btn-lg btn-success btn-block">Guardar &nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
     </button>
 
     @endforeach
