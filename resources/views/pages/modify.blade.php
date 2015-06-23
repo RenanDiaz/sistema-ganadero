@@ -45,8 +45,8 @@
       <?php $selected = $stocks->sexo;?>
       <b>Sexo</b>
       <select class="form-control" name="sexo">
-        <option<?php if($selected == 'M') echo " selected"?>>M</option>
-        <option<?php if($selected == 'H') echo " selected"?>>H</option>
+        <option value="M"<?php if($selected == 'M') echo " selected"?>>Macho</option>
+        <option value="H"<?php if($selected == 'H') echo " selected"?>>Hembra</option>
       </select>
     </div>
     <div class="form-group">
@@ -62,7 +62,7 @@
     </div>
     <div class="form-group">
       <b>Fecha de nacimiento</b>
-      <input type="text" class="form-control" value="{{ $stocks->fecha_nacimiento}}" name="fecha">
+      <input type="date" class="form-control" value="{{ $stocks->fecha_nacimiento}}" name="fecha">
     </div>
     <div class="form-group">
       <b>Descripción</b>

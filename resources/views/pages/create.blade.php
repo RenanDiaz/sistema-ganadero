@@ -52,7 +52,7 @@
       </div>
       <div class="form-group">
         <b>Fecha de nacimiento</b>
-        <input type="text" class="form-control" placeholder="Fecha de nacimiento" name="fecha">
+        <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fecha">
       </div>
       <div class="form-group">
         <b>Descripción</b>

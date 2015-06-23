@@ -56,7 +56,7 @@
         @endforeach
         <td>{{$stocks->cod_ganado}}</td>
         <td>{{$stocks->color}}</td>
-        <td>{{$stocks->sexo}}</td>
+        <td><?php echo ($stocks->sexo == "M" ? "Macho" : "Hembra")?></td>
         <td>{{$stocks->cod_padre}}</td>
         <td>{{$stocks->cod_madre}}</td>
         <td>{{$stocks->fecha_nacimiento}}</td>
