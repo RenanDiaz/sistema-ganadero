@@ -5,16 +5,27 @@
   <div class="col-md-4">
     <h1><strong>Insertar datos del ganado</strong></h1>
     <hr class="colorgraph-01"><br>
-
+    <?php
+    $tiposDeGanado = DB::table('tipos_ganados')->get();
+    $razas = DB::table('tipos_razas')->get();
+    ?>
     <form action="insert" method="post">
       <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
       <div class="form-group">
         <b>Tipo de ganado</b>
-        <input type="text" class="form-control" placeholder="Tipo de ganado" name="tipo_ganado">
+        <select class="form-control" name="tipo_ganado">
+          @foreach($tiposDeGanado as $tipoDeGanado)
+          <option value="{{$tipoDeGanado->idtipos_ganados}}">{{$tipoDeGanado->tipo}}</option>
+          @endforeach
+        </select>
       </div>
       <div class="form-group">
         <b>Raza</b>
-        <input type="text" class="form-control" placeholder="Raza" name="tipo_raza">
+        <select class="form-control" name="tipo_raza">
+          @foreach($razas as $raza)
+          <option value="{{$raza->idtipos_razas}}">{{$raza->raza}}</option>
+          @endforeach
+        </select>
       </div>
       <div class="form-group">
         <b>Código</b>
