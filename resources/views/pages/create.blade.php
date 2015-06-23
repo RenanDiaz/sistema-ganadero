@@ -26,7 +26,10 @@
       </div>
       <div class="form-group">
         <b>Sexo</b>
-        <input type="text" class="form-control" placeholder="Sexo" name="sexo">
+        <select class="form-control" name="sexo">
+          <option>M</option>
+          <option>H</option>
+        </select>
       </div>
       <div class="form-group">
         <b>Código del padre</b>
