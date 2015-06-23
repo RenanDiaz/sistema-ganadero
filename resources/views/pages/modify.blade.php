@@ -10,10 +10,9 @@
   ->where('idinventario_ganado','=',$id)->get();
   ?>
   <form action="update" method="post">
-    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
     @foreach($stock as $stocks)
-          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
-          <input type="hidden" name="id" value="{{$id}}" />
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
+    <input type="hidden" name="id" value="{{$id}}" />
     <div class="form-group">
       <b>Tipo de ganado</b>
       <input type="text" class="form-control" value="{{ $stocks->tipos_ganados_idtipos_ganados}}" name="tipo_ganado">
@@ -31,10 +30,11 @@
       <input type="text" class="form-control" value="{{ $stocks->color}}" name="color">
     </div>
     <div class="form-group">
+      <?php $selected = $stocks->sexo;?>
       <b>Sexo</b>
-      <select class="form-control" value="{{ $stocks->sexo}}" name="sexo">
-        <option>M</option>
-        <option>H</option>
+      <select class="form-control" name="sexo">
+        <option <?php if($selected == 'M'){echo("selected");}?>>M</option>
+        <option <?php if($selected == 'H'){echo("selected");}?>>H</option>
       </select>
     </div>
     <div class="form-group">

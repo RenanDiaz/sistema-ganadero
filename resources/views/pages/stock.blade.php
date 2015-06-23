@@ -10,7 +10,7 @@
 <div class="row">
 
   <div class="col-md-12">
-    <h1><strong>Inventario de Ganado</strong></h1>
+    <h1><strong>Inventario de ganado</strong></h1>
     <hr class="colorgraph-01"><br>
     <div class="container">
       <div class="col-md-4">
@@ -20,12 +20,11 @@
         </form>
       </div>
       <div class="col-md-4">
-        <a href="create"><button type="submit" class="btn btn-success" ><strong>Agregar</strong>
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <a href="create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button></a>
       </div>
     </div>
-    <table class="table table-bordered " id="tabla">
+    <table class="table table-bordered" id="tabla">
       <tr class="info">
         <th>ID</th>
         <th>Tipo de ganado</th>

@@ -12,7 +12,6 @@ $descripcion = Input::get('descripcion');
 $status = Input::get('status');
 
 DB::table('inventario_ganado')->insert(
-
 [
   'tipos_ganados_idtipos_ganados' => $tipo_ganado,
   'tipos_razas_idtipos_razas' => $tipo_raza,
@@ -34,7 +33,7 @@ DB::table('inventario_ganado')->insert(
   <div class="col-md-4">
     <h1><strong>Operación exitosa</strong></h1>
     <hr class="colorgraph-01"><br>
-    <a href="create"><button type="submit" class="btn btn-lg btn-success btn-block" >
+    <a href="create" style="text-decoration: none;"><button type="submit" class="btn btn-lg btn-success btn-block" >
       <strong>Agregar</strong><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button></a><br>
     <a href="stock"><button type="submit" class="btn btn-lg btn-info btn-block" >
