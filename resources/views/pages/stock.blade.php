@@ -44,24 +44,27 @@
       $stock = DB::table('inventario_ganado')->paginate(6);
       $tiposDeGanado = DB::table('tipos_ganados')->get();
       $razas = DB::table('tipos_razas')->get();
+      $estados = DB::table('status')->get();
       ?>
       @foreach($stock as $stocks)
       <tr>
         <td>{{$stocks->idinventario_ganado}}</td>
         @foreach($tiposDeGanado as $tipo)
-        <?php if($stocks->tipos_ganados_idtipos_ganados == $tipo->idtipos_ganados) echo '<td>', $tipo->tipo, '</td>'?>
+        <?php if($stocks->tipos_ganados_idtipos_ganados == $tipo->idtipos_ganados) echo '<td>', $tipo->tipo, '</td>'; ?>
         @endforeach
         @foreach($razas as $raza)
-        <?php if($stocks->tipos_razas_idtipos_razas == $raza->idtipos_razas) echo '<td>', $raza->raza, '</td>'?>
+        <?php if($stocks->tipos_razas_idtipos_razas == $raza->idtipos_razas) echo '<td>', $raza->raza, '</td>'; ?>
         @endforeach
         <td>{{$stocks->cod_ganado}}</td>
         <td>{{$stocks->color}}</td>
-        <td><?php echo ($stocks->sexo == "M" ? "Macho" : "Hembra")?></td>
+        <td><?php echo ($stocks->sexo == "M" ? "Macho" : "Hembra"); ?></td>
         <td>{{$stocks->cod_padre}}</td>
         <td>{{$stocks->cod_madre}}</td>
         <td>{{$stocks->fecha_nacimiento}}</td>
         <td>{{$stocks->descripcion}}</td>
-        <td>{{$stocks->status_idstatus}}</td>
+        @foreach($estados as $estado)
+        <?php if($stocks->status_idstatus == $estado->idstatus) echo '<td>', $estado->status, '</td>'; ?>
+        @endforeach
         <td><a class="btn btn-success" href="/modify?id={{$stocks->idinventario_ganado}}">Modificar</a></td>
         <td><a class="btn btn-danger" href="/delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
         @endforeach
