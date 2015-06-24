@@ -9,6 +9,7 @@
   $stock = DB::table('inventario_ganado')->where('idinventario_ganado','=',$id)->get();
   $tiposDeGanado = DB::table('tipos_ganados')->get();
   $razas = DB::table('tipos_razas')->get();
+  $estados = DB::table('status')->get();
   ?>
   <form action="update" method="post">
     @foreach($stock as $stocks)
@@ -41,11 +42,11 @@
       <input type="text" class="form-control" value="{{$stocks->color}}" name="color">
     </div>
     <div class="form-group">
-      <?php $selected = $stocks->sexo; ?>
+      <?php $sexoSeleccionado = $stocks->sexo; ?>
       <b>Sexo</b>
       <select class="form-control" name="sexo">
-        <option value="M"<?php if($selected == 'M') echo " selected"; ?>>Macho</option>
-        <option value="H"<?php if($selected == 'H') echo " selected"; ?>>Hembra</option>
+        <option value="M"<?php if($sexoSeleccionado == 'M') echo " selected"; ?>>Macho</option>
+        <option value="H"<?php if($sexoSeleccionado == 'H') echo " selected"; ?>>Hembra</option>
       </select>
     </div>
     <div class="form-group">
@@ -65,8 +66,13 @@
       <input type="text" class="form-control" value="{{$stocks->descripcion}}" name="descripcion">
     </div>
     <div class="form-group">
+      <?php $estadoSeleccionado = $stocks->status_idstatus; ?>
       <b>Estado</b>
-      <input type="text" class="form-control" value="{{$stocks->status_idstatus}}" name="status">
+      <select class="form-control" name="status">
+        @foreach($estados as $estado)
+        <option value="{{$estado->idstatus}}"<?php if($estadoSeleccionado == $estado->idstatus) echo " selected"; ?>>{{$estado->status}}</option>
+        @endforeach
+      </select>
     </div>
     <button type="submit" class="btn btn-lg btn-success btn-block">Guardar &nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
     </button>

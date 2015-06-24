@@ -8,6 +8,7 @@
     <?php
     $tiposDeGanado = DB::table('tipos_ganados')->get();
     $razas = DB::table('tipos_razas')->get();
+    $estados = DB::table('status')->get();
     ?>
     <form action="insert" method="post">
       <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
@@ -60,7 +61,11 @@
       </div>
       <div class="form-group">
         <b>Estado</b>
-        <input type="text" class="form-control" placeholder="Estado" name="status">
+        <select class="form-control" name="status">
+          @foreach($estados as $estado)
+          <option value="{{$estado->idstatus}}">{{$estado->status}}</option>
+          @endforeach
+        </select>
       </div>
       <button type="submit" class="btn btn-lg btn-success btn-block">
         Guardar &nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
