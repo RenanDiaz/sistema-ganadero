@@ -34,24 +34,33 @@
                 <th>Unidades</th>
                 <th>Descripción</th>
                 <th>Fecha de vencimiento</th>
-                <th>Status</th>
+                <th>Estado</th>
                 <th>Modificar</th>
                 <th>Eliminar</th>
             </tr>
             <?php
-            $insumos=DB::table('inventario_insumos')->get();
+            $insumos = DB::table('inventario_insumos')->get();
+            $unidades = DB::table('unidades')->get();
+            $tiposDeInsumos = DB::table('tipo_insumos')->get();
+            $estados = DB::table('status')->get();
             ?>
             @foreach($insumos as $insumo)
             <tr>
                 <td>{{$insumo->idinventario_insumos}}</td>
                 <td>{{$insumo->cod_producto}}</td>
                 <td>{{$insumo->nombre}}</td>
-                <td>{{$insumo->tipo_insumos_idtipo_insumos}}</td>
+                @foreach($tiposDeInsumos as $tipoDeInsumo)
+                <?php if($insumo->tipo_insumos_idtipo_insumos == $tipoDeInsumo->idtipo_insumos) echo '<td>', $tipoDeInsumo->tipo_insumo, '</td>'; ?>
+                @endforeach
                 <td>{{$insumo->cantidad}}</td>
-                <td>{{$insumo->unidades_idunidades}}</td>
+                @foreach($unidades as $unidad)
+                <?php if($insumo->unidades_idunidades == $unidad->idunidades) echo '<td>', $unidad->unidad, '</td>'; ?>
+                @endforeach
                 <td>{{$insumo->descripcion}}</td>
                 <td>{{$insumo->fecha_vencimiento}}</td>
-                <td>{{$insumo->status_idstatus}}</td>
+                @foreach($estados as $estado)
+                <?php if($insumo->status_idstatus == $estado->idstatus) echo '<td>', $estado->status, '</td>'; ?>
+                @endforeach
                 <td><a class="btn btn-success" href="/modify?id={{$insumo->idinventario_insumos}}">Modificar</a></td>
                 <td><a class="btn btn-danger" href="/delete?id={{$insumo->idinventario_insumos}}">Eliminar</a></td>
             </tr>
