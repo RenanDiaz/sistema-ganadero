@@ -20,7 +20,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <a href="/create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <a href="/nuevo"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button></a>
             </div>
         </div>
