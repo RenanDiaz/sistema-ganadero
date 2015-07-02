@@ -204,7 +204,7 @@ class RouteCollection implements \IteratorAggregate, \Countable
             foreach ($this->routes as $route) {
                 $route->addDefaults($defaults);
             }
-        }
+      {
     }
 
     /**
