@@ -13,18 +13,16 @@
         <h1><strong>Inventario de ganado</strong></h1>
         <hr class="colorgraph-01"><br>
         <div class="container">
+            <div class="col-md-4"></div>
             <div class="col-md-4">
-                <form class="form-group has-feedback">
-                    <input type="text" id="buscar" class="form-control" placeholder="Buscar inventario por...">
-                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
-                </form>
+                <a href="create" style="text-decoration: none;"><button type="submit" class="btn btn-lg btn-success btn-block" >
+                        <strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button></a><br>
             </div>
-            <div class="col-md-4">
-                <a href="/create"><button type="submit" class="btn btn-success"><strong>Agregar</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </button></a>
-            </div>
+            <div class="col-md-4"></div>
         </div>
-        <table class="table table-bordered table-responsive" id="tabla">
+        <table id="myTable" class="table table-striped table-bordered display" width="100%">
+            <thead>
             <tr class="info">
                 <th>ID</th>
                 <th>Tipo de ganado</th>
@@ -40,8 +38,10 @@
                 <th>Modificar</th>
                 <th>Eliminar</th>
             </tr>
+            </thead>
+            <tbody>
             <?php
-            $stock = DB::table('inventario_ganado')->paginate(6);
+            $stock = DB::table('inventario_ganado')->get();
             $tiposDeGanado = DB::table('tipos_ganados')->get();
             $razas = DB::table('tipos_razas')->get();
             $estados = DB::table('status')->get();
@@ -73,44 +73,18 @@
                 </td>
                 <td><a class="btn btn-success" href="/modify?id={{$stocks->idinventario_ganado}}">Modificar</a></td>
                 <td><a class="btn btn-danger" href="/delete?id={{$stocks->idinventario_ganado}}">Eliminar</a></td>
+            </tr>
                 @endforeach
+            </tbody>
             </table>
-            <?php echo $stock->render(); ?>
         </div>
     </div>
 
     @endsection
     @section('footer')
-    <script type="text/javascript">
-    $(document).ready(function()
-    {
-        $('#buscar').keyup(function()
-        {
-            searchTable($(this).val());
-        });
-    });
-
-    function searchTable(inputVal)
-    {
-        var table = $('#tabla');
-        table.find('tr').each(function(index, row)
-        {
-            var allCells = $(row).find('td');
-            if(allCells.length > 0)
-            {
-                var found = false;
-                allCells.each(function(index, td)
-                {
-                    var regExp = new RegExp(inputVal, 'i');
-                    if(regExp.test($(td).text()))
-                    {
-                        found = true;
-                        return false;
-                    }
-                });
-                if(found == true)$(row).show();else $(row).hide();
-            }
-        });
-    }
-    </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#myTable').DataTable();
+            });
+        </script>
     @endsection

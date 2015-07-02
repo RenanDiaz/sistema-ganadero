@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/colorgraph.css">
+    <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
     <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.file-input.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../js/bootstrap.min.js"></script>
     <style type="text/css">
     body{
         padding-bottom: 70px;
