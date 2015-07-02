@@ -67,8 +67,10 @@
                 <?php if($insumo->status_idstatus == $estado->idstatus) echo $estado->status; ?>
                 @endforeach
                 </td>
-                <td><a class="btn btn-success" href="/modificar?id={{$insumo->idinventario_insumos}}">Modificar</a></td>
-                <td><a class="btn btn-danger" href="/eliminar?id={{$insumo->idinventario_insumos}}">Eliminar</a></td>
+
+                <td><a class="btn btn-success" href="/modify?id={{$insumo->idinventario_insumos}}">Modificar</a></td>
+                <td><a class="btn btn-danger" href="/delete?id={{$insumo->idinventario_insumos}}">Eliminar</a></td>
+
             </tr>
             @endforeach
         </table>

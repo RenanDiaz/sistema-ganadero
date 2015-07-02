@@ -37,4 +37,14 @@ class PagesController extends Controller {
 
 		return view('pages.supplies'); //Inventario de insumos
 	}
+
+	public function insertar(){
+
+		return view('pages.insertar'); //Inventario de insumos
+	}
+
+	public function nuevo(){
+
+		return view('pages.nuevo'); //Inventario de insumos
+	}
 }

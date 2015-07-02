@@ -1,5 +1,4 @@
 <?php
-
 $codigo_producto = Input::get('cod_producto');
 $nombre = Input::get('nombre');
 $tipo_insumos_idtipo_insumos = Input::get('tipo_insumos');
@@ -11,6 +10,7 @@ $status = Input::get('status');
 
 DB::table('inventario_insumos')->insert(
 [
+
   'cod_producto' => $codigo_producto,
   'nombre' => $nombre,
   'tipo_insumos_idtipo_insumos' => $tipo_insumos_idtipo_insumos,
@@ -19,6 +19,7 @@ DB::table('inventario_insumos')->insert(
   'descripcion' => $descripcion,
   'fecha_vencimiento' => $fecha,
   'status_idstatus' => $status
+
     ]
 );
 ?>
