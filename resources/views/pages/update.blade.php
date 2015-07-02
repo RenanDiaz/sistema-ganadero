@@ -15,31 +15,31 @@ DB::table('inventario_ganado')
 ->where('idinventario_ganado', $idinventario_ganado)
 ->update(
 [
-  'tipos_ganados_idtipos_ganados' => $tipo_ganado,
-  'tipos_razas_idtipos_razas' => $tipo_raza,
-  'cod_ganado' => $cod_ganado,
-  'color' => $color,
-  'sexo' => $sexo,
-  'cod_padre' => $cod_padre,
-  'cod_madre' => $cod_madre,
-  'fecha_nacimiento' => $fecha,
-  'descripcion' => $descripcion,
-  'status_idstatus' => $status
-  ]
+    'tipos_ganados_idtipos_ganados' => $tipo_ganado,
+    'tipos_razas_idtipos_razas' => $tipo_raza,
+    'cod_ganado' => $cod_ganado,
+    'color' => $color,
+    'sexo' => $sexo,
+    'cod_padre' => $cod_padre,
+    'cod_madre' => $cod_madre,
+    'fecha_nacimiento' => $fecha,
+    'descripcion' => $descripcion,
+    'status_idstatus' => $status
+    ]
 );
 
 ?>
 @extends('master')
 @section('content')
 <div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <h1><strong>Modificado correctamente</strong></h1>
-    <hr class="colorgraph-01"><br>
-    <a href="stock" style="text-decoration: none;"><button type="submit" class="btn btn-lg btn-info btn-block">
-      <strong>Ver inventario</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-    </button></a>
-  </div>
-  <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h1><strong>Modificado correctamente</strong></h1>
+        <hr class="colorgraph-01"><br>
+        <a href="stock" style="text-decoration: none;"><button type="submit" class="btn btn-lg btn-info btn-block">
+            <strong>Ver inventario</strong> &nbsp;&nbsp;<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+        </button></a>
+    </div>
+    <div class="col-md-4"></div>
 </div>
 @endsection
