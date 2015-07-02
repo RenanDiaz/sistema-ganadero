@@ -7,6 +7,7 @@ use App\Inventario_ganado;
 class PagesController extends Controller {
 
 	public function index(){
+
 		return view('pages.index');//Home page
 	}
 
@@ -21,7 +22,6 @@ class PagesController extends Controller {
 	public function insert(){
 		return view('pages.insert'); //insertar cattle
 	}
-
 	public function modify(){ //Modificar ganado
 		return view ('pages.modify');
 	}
@@ -29,29 +29,12 @@ class PagesController extends Controller {
 	public function update(){
 		return view('pages.update');
 	}
-
 	public function delete(){
 		return view('pages.delete'); //Eliminar ganado
 	}
 
 	public function supplies(){
+
 		return view('pages.supplies'); //Inventario de insumos
-	}
-
-	public function nuevo(){
-		return view('pages.nuevo'); //Nuevo insumo
-	}
-
-	public function insertar(){
-		return view('pages.insertar'); //insertar insumos
-	}
-	public function eliminar(){
-		return view('pages.eliminar'); //insertar insumos
-	}
-	public function actualizar(){
-		return view('pages.actualizar'); //insertar insumos
-	}
-	public function modificar(){
-		return view('pages.modificar'); //insertar insumos
 	}
 }
