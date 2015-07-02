@@ -49,18 +49,24 @@
                 <td>{{$insumo->idinventario_insumos}}</td>
                 <td>{{$insumo->cod_producto}}</td>
                 <td>{{$insumo->nombre}}</td>
+                <td>
                 @foreach($tiposDeInsumos as $tipoDeInsumo)
-                <?php if($insumo->tipo_insumos_idtipo_insumos == $tipoDeInsumo->idtipo_insumos) echo '<td>', $tipoDeInsumo->tipo_insumo, '</td>'; ?>
+                <?php if($insumo->tipo_insumos_idtipo_insumos == $tipoDeInsumo->idtipo_insumos) echo $tipoDeInsumo->tipo_insumo; ?>
                 @endforeach
+                </td>
                 <td>{{$insumo->cantidad}}</td>
+                <td>
                 @foreach($unidades as $unidad)
-                <?php if($insumo->unidades_idunidades == $unidad->idunidades) echo '<td>', $unidad->unidad, '</td>'; ?>
+                <?php if($insumo->unidades_idunidades == $unidad->idunidades) echo $unidad->unidad; ?>
                 @endforeach
+                </td>
                 <td>{{$insumo->descripcion}}</td>
                 <td>{{$insumo->fecha_vencimiento}}</td>
+                <td>
                 @foreach($estados as $estado)
-                <?php if($insumo->status_idstatus == $estado->idstatus) echo '<td>', $estado->status, '</td>'; ?>
+                <?php if($insumo->status_idstatus == $estado->idstatus) echo $estado->status; ?>
                 @endforeach
+                </td>
                 <td><a class="btn btn-success" href="/modify?id={{$insumo->idinventario_insumos}}">Modificar</a></td>
                 <td><a class="btn btn-danger" href="/delete?id={{$insumo->idinventario_insumos}}">Eliminar</a></td>
             </tr>

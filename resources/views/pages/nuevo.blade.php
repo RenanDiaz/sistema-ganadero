@@ -8,6 +8,7 @@
         <?php
         $tiposDeInsumo = DB::table('tipo_insumos')->get();
         $estados = DB::table('status')->get();
+        $unidades = DB::table('unidades')->get();
         ?>
         <form action="insertar" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
@@ -17,10 +18,10 @@
             </div>
             <div class="form-group">
                 <b>Nombre</b>
-                <input type="text" class="form-control" placeholder="Color" name="nombre">
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre">
             </div>
             <div class="form-group">
-                <b>Tipo de insumos</b>
+                <b>Tipo de insumo</b>
                 <select class="form-control" name="tipo_insumos">
                     @foreach($tiposDeInsumo as $tipoDeInsumo)
                     <option value="{{$tipoDeInsumo->idtipo_insumos}}">{{$tipoDeInsumo->tipo_insumo}}</option>
@@ -28,12 +29,12 @@
                 </select>
                   </div>
                 <div class="form-group">
-                    <b>Cantidad</b>
-                    <input type="text" class="form-control" placeholder="Cantidad" name="cantida">
-                </div>
-                <div class="form-group">
                     <b>Unidades</b>
-                    <input type="text" class="form-control" placeholder="Unidades" name="unidades_idunidades">
+                    <select class="form-control" name="unidades">
+                        @foreach($unidades as $unidad)
+                        <option value="{{$unidad->idunidades}}">{{$unidad->unidad}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <b>Descripción</b>
