@@ -19,4 +19,10 @@ Route::get('supplies','PagesController@supplies'); //supplies stock
 
 Route::get('nuevo','PagesController@nuevo'); //supplies stock
 
-Route::get('insertar','PagesController@insertar'); //supplies stock
+Route::post('insertar','PagesController@insertar'); //insert supplies
+
+Route::get('eliminar','PagesController@eliminar'); //delete supplies
+
+Route::post('actualizar','PagesController@actualizar'); //update supplies
+
+Route::get('modificar','PagesController@modificar'); //modify supplies
